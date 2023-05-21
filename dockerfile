@@ -40,10 +40,6 @@ RUN mkdir -p /app
 COPY default/requirements.txt /app/
 RUN pip install -r /app/requirements.txt --cache-dir /app/pip_cache
 
-RUN mkdir -p /app/docker
-RUN mkdir -p /app/docker/django
-COPY docker/django/ /app/docker/django/
-
 RUN mkdir -p /app/screenshots
 RUN mkdir -p /app/csv
 
