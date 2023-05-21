@@ -1,0 +1,16 @@
+__pycache__
+node_modules
+venv
+.env*
+docker/services/mysql/volume/
+.idea/
+default/share
+default/media/datasets/
+!default/media/datasets/__init__py
+!default/share/__init__py
+docker/services/share
+!docker/services/share/__init__.py
+mysql_BKP
+.DS_Store
+mysql_BKP
+celery.log
