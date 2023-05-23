@@ -4,7 +4,7 @@ docker build -f dockerfile -t datascraping:latest .
 
 docker run -it \
      -env-file=.env \
-     -v .screenshots/:/app/screenshots/ \
-     -v .csv/:/app/csv/ \
-     -v .default/:/app/default/ \
+     -v ${PWD}/screenshots/:/app/screenshots/ \
+     -v ${PWD}/csv/:/app/csv/ \
+     -v ${PWD}/default/:/app/default/ \
      datascraping:latest

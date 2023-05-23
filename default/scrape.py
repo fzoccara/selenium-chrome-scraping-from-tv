@@ -26,8 +26,8 @@ chrome_prefs["profile.default_content_settings"] = {"images": 2}
 browser = webdriver.Chrome(options=chrome_options)
 
 browser.get('https://www.tradingview.com/#signin')
-username = 'xx'
-password = 'yy'
+username = 'xxx'
+password = 'yyy'
 
 
 time.sleep(2)
@@ -57,20 +57,37 @@ time.sleep(1)
 print("get chart")
 browser.get_screenshot_as_file('/app/screenshots/1_getpage.png') 
 
+# 5 15 30 60 1D 1W 1M
+available_timeframes = ['5', '15', '30', '60', '1D', '1W', '1M']
+timeframe = "1D"
+if timeframe != None and timeframe in available_timeframes:
+
+    timeframe_selector = browser.find_element(By.CSS_SELECTOR, "button.apply-common-tooltip[data-tooltip='Time Interval']")
+    browser.execute_script("arguments[0].click();", timeframe_selector)
+    time.sleep(1)
+    print("open timeframe selection")
+    browser.get_screenshot_as_file('/app/screenshots/2_opentimeframe.png') 
+    
+    timeframe_choice = browser.find_element(By.CSS_SELECTOR, '#overlap-manager-root [data-role="menuitem"][data-value="'+timeframe+'"]')
+    browser.execute_script("arguments[0].click();", timeframe_choice)
+    time.sleep(1)
+    print("select timeframe")
+    browser.get_screenshot_as_file('/app/screenshots/3_timeframeselect.png') 
+
 # load menu for save and load
 wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'button.apply-common-tooltip[data-name="save-load-menu"]'))).click()
 time.sleep(1)
 print("open menu")
-browser.get_screenshot_as_file('/app/screenshots/2_openmenu.png') 
+browser.get_screenshot_as_file('/app/screenshots/4_openmenu.png') 
 
 wait.until(EC.visibility_of_element_located((By.XPATH, "//span[contains(text(), 'Export chart data…')]"))).click()
 time.sleep(1)
 print("open export popup")
-browser.get_screenshot_as_file('/app/screenshots/3_exportpopup.png') 
+browser.get_screenshot_as_file('/app/screenshots/5_exportpopup.png') 
 
 wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, '#overlap-manager-root button[name="submit"]'))).click()
 time.sleep(1)
 print("export button click")
-browser.get_screenshot_as_file('/app/screenshots/4_exportbutton.png') 
+browser.get_screenshot_as_file('/app/screenshots/6_exportbutton.png') 
 
 browser.quit()
